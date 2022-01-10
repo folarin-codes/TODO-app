@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Open+Sans:wght@400;600&family=Raleway:wght@500;600;700&display=swap");
+
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", Verdana, Geneva, Tahoma, sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+h2 {
+  margin-top: 2em;
+  text-align: center;
+}
+.inputs {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.main-input {
+  width: 50vw;
+  height: 2rem;
+  padding: 0.2em 1em;
+  border-radius: 0;
+  border-color: transparent;
+  border: 1px solid black;
+}
+.main-input :focus-visible,
+.main-input :focus {
+  border-radius: 0;
+  outline: none;
+}
+.button-add {
+  height: 2rem;
+  width: 7vw;
+  cursor: pointer;
+  border-color: black;
+  border: 1px solid rgb(6, 142, 233);
+  border-radius: 0;
+  border-color: transparent;
+  background-color: rgb(6, 142, 233);
+  color: white;
+}
+
+.goal {
+  margin-bottom: 1em;
+  padding: 0.4em 0;
+  width: 30vw;
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+}
+
+.delete {
+  cursor: pointer;
+  position: absolute;
+  left: 25em;
+}
