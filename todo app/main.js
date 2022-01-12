@@ -1,9 +1,3 @@
-/*
-1) once you click add , the input value gets added  to the dom with the cancel button.
-2) click on cancel button to remove the element for the dom.
-3) store in todo's in an array.
-4) store the todos in local storage.
-*/
 
 const elements = {
       addButton: document.querySelector('.button-add'),
@@ -11,10 +5,7 @@ const elements = {
       todoItem: document.querySelector('.main-input'),
       todoContainer : document.querySelector('.todo-list')
 }
-
-
- todoArr = []
-
+todoArr = []
 
 let addTodoToDom = (value) => {
 
@@ -23,15 +14,18 @@ let addTodoToDom = (value) => {
         <span class="goal">
                  <li>${value}</li>
                  <i class=" delete ri-close-circle-line"></i>
+                 
         </span>
       
       `
      
-
+      if (!value == '') {
+            
       elements.todoContainer.insertAdjacentHTML("beforeend", todo)
     
       todoArr.push(todo)
-
+            
+      }
       
       localStorage.setItem("todos", JSON.stringify(todoArr))
      
@@ -41,27 +35,32 @@ let addTodoToDom = (value) => {
      
 parsedTodoArr = JSON.parse(localStorage.getItem("todos"))
 
+elements.todoContainer.addEventListener('click', function (e) {
       
+      let event = e.target.closest('.delete').parentNode;
+     
+      let arrIndex
+      
+      arrIndex = todoArr.findIndex((el) => {
+            return el.includes(`${event.innerHTML}`)
+      })
+      
+      todoArr.splice(arrIndex, 1)
+      
+      localStorage.setItem("todos", JSON.stringify(todoArr))
+      
+      parsedTodoArr = JSON.parse(localStorage.getItem("todos"))
 
+      event.parentNode.removeChild(event)
+
+})
 
 function renderTodo() {
       
-
       parsedTodoArr.forEach(el => { 
             elements.todoContainer.insertAdjacentHTML('beforeend' , el)
             
       });
-}
-
-
-
-
-// elements.cancelButton.addEventListener('click', function () {
-      
-// })
-
-if (parsedTodoArr) {
-      todoArr = parsedTodoArr;
 }
 
 let init = function () {
@@ -85,14 +84,12 @@ let init = function () {
 
             elements.todoItem.value = ''
          
-    
-
-     
-      
       })
-    
-
-      renderTodo()    
-}
+          
+     renderTodo()
+      
+} 
 
 init()
+
+
